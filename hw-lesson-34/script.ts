@@ -56,7 +56,7 @@ interface IMovies {
   production: string;
 }
 
-const movies = [
+const movies: IMovies[] = [
   {
     id: 1,
     title: "Black Widow",
