@@ -1,21 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { IPosts } from "src/types/types";
 import SelectedPost from "./SelectedPost/SelectedPost";
+import { getPosts } from "src/helpers";
 import './style.css'
 
 const SelectedPostContainer = () => {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
-    const getPosts = async () => {
-      await fetch("https://studapi.teachmeskills.by/blog/posts/?limit=1")
-        .then((res) => res.json())
-        .then((res) => {
-          let data = res.results;
-          setPosts(data);
-        })
-        .catch((err) => console.log(err.message));
-    };
-    getPosts();
+    getPosts(setPosts, 1)
   }, []);
   return (
     <div className="posts-container">

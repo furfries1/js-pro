@@ -3,20 +3,12 @@ import { IPosts } from "src/types/types";
 import "./style.css";
 import Post from "../Post/Post";
 import TabsContainer from "../Tabs/TabsContainer";
+import { getPosts } from "src/helpers";
 
 const Blog = () => {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
-    const getPosts = async () => {
-      await fetch("https://studapi.teachmeskills.by/blog/posts/?limit=12")
-        .then((res) => res.json())
-        .then((res) => {
-          let data = res.results;
-          setPosts(data);
-        })
-        .catch((err) => console.log(err.message));
-    };
-    getPosts();
+    getPosts(setPosts, 12)
   }, []);
   return (
     <>

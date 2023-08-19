@@ -12,7 +12,7 @@ function App() {
   return (
     <div className="App">
       <PageTemplate title="Title">
-        {/* <Blog /> */}
+        <Blog />
         {/* <SelectedPostContainer /> */}
         {/* <SignIn /> */}
         {/* <SignUp /> */}
