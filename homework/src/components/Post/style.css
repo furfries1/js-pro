@@ -1,0 +1,163 @@
+.post-big {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 15px;
+}
+
+.post-body-big {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.post-img-big img {
+  object-fit: cover;
+  width: 300px;
+  height: 300px;
+}
+
+.post-title-big {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.post-date-big {
+  color: #a4a4a4;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.like-big {
+  display: block;
+  background-image: url("../../images/like-sm.png");
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.dislike-big {
+  display: block;
+  background-image: url("../../images/dislike-sm.png");
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.like-container-big {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.post-footer-big {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.fav {
+  display: block;
+  background-image: url("../../images/fav-sm.png");
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+.dots {
+  display: block;
+  background-image: url("../../images/dots-sm.png");
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.fav-container-big {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+/* small post */
+
+.post-small {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 15px;
+}
+
+.post-body-small {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.post-img-small img {
+  object-fit: cover;
+  width: 150px;
+  height: 150px;
+}
+
+.post-title-small {
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.post-date-small {
+  color: #a4a4a4;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.like {
+  display: block;
+  background-image: url("../../images/like-sm.png");
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.dislike {
+  display: block;
+  background-image: url("../../images/dislike-sm.png");
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.like-container-small {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.post-footer-small {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.fav {
+  display: block;
+  background-image: url("../../images/fav-sm.png");
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+.dots {
+  display: block;
+  background-image: url("../../images/dots-sm.png");
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.fav-container-small {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}

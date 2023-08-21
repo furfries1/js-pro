@@ -1,0 +1,33 @@
+.form-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #6171e6;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.reset-password {
+    margin-right: auto;
+}
+
+.reset-password a {
+    text-decoration: none;
+    color: #111;
+}
+
+.signup a {
+    text-decoration: none;
+    font-weight: 500;
+}
+
+form {
+    border: 1px solid rgb(201, 201, 201);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 500px;
+    padding: 20px;
+}
