@@ -5,18 +5,27 @@ import "./style.css";
 interface IPageTemplate {
   title: string;
   children: ReactNode;
+  value: string;
+  setInputValue: (value: string) => void;
 }
 
-const PageTemplate: FC<IPageTemplate> = ({ title, children }) => {
+const PageTemplate: FC<IPageTemplate> = ({
+  title,
+  children,
+  value,
+  setInputValue,
+}) => {
   const [isDark, setIsDark] = useState(false);
   return (
     <div className={`page-template ${isDark ? "dark" : ""}`}>
-      <Header />
+      <Header value={value} setInputValue={setInputValue} />
       <main>
         <a href="#">Back to home</a>
         <div className="title-wrapper">
           <h1>{title}</h1>
-          <button onClick={() => setIsDark(prevState => !prevState)}>Toggle theme</button>
+          <button onClick={() => setIsDark((prevState) => !prevState)}>
+            Toggle theme
+          </button>
         </div>
         <div className="children-container">{children}</div>
       </main>
