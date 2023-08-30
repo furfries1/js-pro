@@ -3,6 +3,7 @@ import Burger from "../Burger/Burger";
 import "./style.css";
 import SearchIcon from "src/images/search-icon.svg";
 import Person from "src/images/person.svg";
+import { Link } from "react-router-dom";
 
 interface IHeader {
   value: string;
@@ -23,7 +24,7 @@ const Header: FC<IHeader> = ({ value, setInputValue }) => {
         />
         <img src={SearchIcon} alt="search" className="search-icon" />
       </div>
-      <img src={Person} alt="person" className="person-icon" />
+      <Link to='/signin'> <img src={Person} alt="person" className="person-icon" /> </Link>
     </header>
   );
 };

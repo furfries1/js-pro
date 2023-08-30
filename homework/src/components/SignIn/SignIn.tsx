@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import Input from "../Input/Input";
 import "./style.css";
+import PageTemplate from "../PageTemplate/PageTemplate";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   return (
-    <form action="#">
+    <PageTemplate title="Sign In">
+    <form action="/success">
       <Input
         label="Email"
         placeholder="Your Email"
@@ -29,6 +31,7 @@ const SignIn = () => {
         Don't have an account? <a href="#">Sign Up</a>
       </p>
     </form>
+    </PageTemplate>
   );
 };
 

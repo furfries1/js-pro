@@ -1,26 +1,22 @@
 import React, { FC, ReactNode, useState } from "react";
 import Header from "../Header/Header";
 import "./style.css";
+import { Link, useLocation } from "react-router-dom";
 
 interface IPageTemplate {
   title: string;
   children: ReactNode;
-  value: string;
-  setInputValue: (value: string) => void;
 }
 
-const PageTemplate: FC<IPageTemplate> = ({
-  title,
-  children,
-  value,
-  setInputValue,
-}) => {
+const PageTemplate: FC<IPageTemplate> = ({ title, children }) => {
   const [isDark, setIsDark] = useState(false);
+  const [inputValue, setInputValue] = useState("");
+  const location = useLocation();
   return (
     <div className={`page-template ${isDark ? "dark" : ""}`}>
-      <Header value={value} setInputValue={setInputValue} />
+      <Header value={inputValue} setInputValue={setInputValue} />
       <main>
-        <a href="#">Back to home</a>
+        {location.pathname !== "/blog" && <Link to="/blog">Back to home</Link>}
         <div className="title-wrapper">
           <h1>{title}</h1>
           <button onClick={() => setIsDark((prevState) => !prevState)}>
