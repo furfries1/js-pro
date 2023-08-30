@@ -1,17 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { IPosts } from "src/types/types";
 import "./style.css";
 import Post from "../Post/Post";
 import TabsContainer from "../Tabs/TabsContainer";
 import { getPosts } from "src/helpers";
+import PageTemplate from "../PageTemplate/PageTemplate";
+import { PostsContext } from "src/App";
+
 
 const Blog = () => {
-  const [posts, setPosts] = useState([]);
-  useEffect(() => {
-    getPosts(setPosts, 12)
-  }, []);
+
+  const { posts } = useContext(PostsContext);
+  // const [posts, setPosts] = useState([]);
+  // useEffect(() => {
+  //   getPosts(setPosts, 12)
+  // }, []);
   return (
     <>
+      <PageTemplate title="Blog">
+
       <TabsContainer />
       <div className="blog-container">
         <div className="big-posts">
@@ -36,6 +43,7 @@ const Blog = () => {
         <div className="prev"></div>
         <div className="next"></div>
       </div>
+      </PageTemplate>
     </>
   );
 };

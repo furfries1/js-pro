@@ -2,7 +2,7 @@ import React from "react";
 import { IPost } from "src/types/types";
 
 const SelectedPost = ({ post }: IPost) => {
-  const { date, title, image, text, description, lesson_num, author, size } = post;
+  const { date, title, image, text, description, lesson_num, author, size, } = post;
   return (
     <div className="selected-post">
       <div className="title-container">

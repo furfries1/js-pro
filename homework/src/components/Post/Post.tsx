@@ -1,11 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { IPost } from "src/types/types";
+import {
+  Routes,
+  Route,
+  Link,
+  useNavigate,
+  useLocation,
+  Navigate,
+} from "react-router-dom";
 import "./style.css";
 
 const Post = ({ post, size }: IPost) => {
   const { date, title, image } = post;
+  
+  const navigate = useNavigate();
+
   return (
-    <div className={`post-${size}`}>
+    <div className={`post-${size}`} onClick={() => navigate(`/blog/${post.id}`)}>
       <div className={`post-body-${size}`}>
         <div className={`post-description-${size}`}>
           <div className={`post-date-${size}`}>{date}</div>

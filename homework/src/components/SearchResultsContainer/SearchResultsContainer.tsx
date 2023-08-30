@@ -2,6 +2,7 @@ import React, { useEffect, useState, FC } from "react";
 import { IPosts } from "src/types/types";
 import Post from "../Post/Post";
 import { getPosts } from "src/helpers";
+import PageTemplate from "../PageTemplate/PageTemplate";
 
 interface ISearchResults {
   value: string;
@@ -19,11 +20,13 @@ const SearchResultsContainer: FC<ISearchResults> = ({ value }) => {
 
   return (
     <>
+
       {value.length >= 2
         ? searchPosts.map((post: IPosts) => (
             <Post key={post.id} post={post} size="search" />
           ))
         : null}
+
     </>
   );
 };

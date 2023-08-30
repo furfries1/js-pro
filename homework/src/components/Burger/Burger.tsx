@@ -1,12 +1,15 @@
-import React from "react";
+import React, {useState} from "react";
+import Menu from "./Menu";
 
 const Burger = () => {
-  const onBurgerClick = (str: string, num: number) => {
-    return console.log(`${str + num}`);
+  const [isOpen, setIsOpen] = useState(false)
+  const onBurgerClick = () => {
+    setIsOpen((prevState) => !prevState)
   };
   return (
     <div className="burger">
-      <div onClick={() => onBurgerClick("click", 1)}>☰</div>
+      <div onClick={() => onBurgerClick()}>{isOpen ? '✖' : '☰'}</div>
+      <Menu isOpen={isOpen}/>
     </div>
   );
 };

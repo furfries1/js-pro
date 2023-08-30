@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Input from "../Input/Input";
 import "./style.css";
+import PageTemplate from "../PageTemplate/PageTemplate";
+
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -8,6 +10,7 @@ const SignUp = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [name, setName] = useState("");
   return (
+    <PageTemplate title="Sign Up">
     <form>
       <Input
         value={name}
@@ -39,6 +42,7 @@ const SignUp = () => {
       />
       <button className="form-button">sign up</button>
     </form>
+    </PageTemplate>
   );
 };
 
