@@ -1,4 +1,5 @@
 import React, { FC, ReactNode, useState } from "react";
+import { useSelector } from "react-redux";
 import Header from "../Header/Header";
 import "./style.css";
 import { Link, useLocation } from "react-router-dom";
@@ -9,23 +10,17 @@ interface IPageTemplate {
 }
 
 const PageTemplate: FC<IPageTemplate> = ({ title, children }) => {
-  const [isDark, setIsDark] = useState(false);
-  const [inputValue, setInputValue] = useState("");
   const location = useLocation();
+  const theme = useSelector(({ theme }) => theme);
   return (
-    <div className={`page-template ${isDark ? "dark" : ""}`}>
-      <Header value={inputValue} setInputValue={setInputValue} />
-      <main>
+    <div className={`page-template ${theme === "dark" ? "dark" : ""}`}>
+      <Header />
+      <div className="title">{title}</div>
+      <main className={` ${theme === "dark" ? "dark" : ""}`}>
         {location.pathname !== "/blog" && <Link to="/blog">Back to home</Link>}
-        <div className="title-wrapper">
-          <h1>{title}</h1>
-          <button onClick={() => setIsDark((prevState) => !prevState)}>
-            Toggle theme
-          </button>
-        </div>
         <div className="children-container">{children}</div>
       </main>
-      <footer>
+      <footer className={` ${theme === "dark" ? "dark" : ""}`}>
         <span>2022</span>
         <span>All rights reserved</span>
       </footer>

@@ -1,15 +1,35 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import ImageModal from "src/components/ImageModal/ImageModal";
 import { IPost } from "src/types/types";
 
 const SelectedPost = ({ post }: IPost) => {
-  const { date, title, image, text, description, lesson_num, author, size, } = post;
+  const dispatch = useDispatch();
+  const modalImg = useSelector(({ modalImgInfo }) => modalImgInfo);
+  const {
+    date,
+    title,
+    image,
+    text,
+    description,
+    lesson_num,
+    author,
+    size,
+    id,
+  } = post;
   return (
-    <div className="selected-post">
+    <>
+    <div className={`selected-post ${modalImg.isOpen ? "blur" : ""}`}>
       <div className="title-container">
         <div className="selected-post-date">{date}</div>
         <div className="selected-post-title">{title}</div>
       </div>
-      <img src={image} alt="img" className="selected-post-img" />
+      <img
+        src={image}
+        alt="img"
+        className="selected-post-img"
+        onClick={() => dispatch({ type: "TOGGLE_IMG_MODAL", payload: image })}
+      />
       <div className="selected-post-text">
         {" "}
         {text} {description} Lorem ipsum, dolor sit amet consectetur adipisicing
@@ -18,14 +38,7 @@ const SelectedPost = ({ post }: IPost) => {
         aliquid, ipsam id libero quidem architecto? Eius dolor deserunt, modi
         quibusdam pariatur possimus. Possimus quo atque illo rem id, quasi sint,
         nihil delectus tempore perspiciatis earum illum, dignissimos suscipit
-        ducimus explicabo veniam quae. Fugit, suscipit necessitatibus! Fugit
-        harum eum dolores fugiat consequuntur eveniet molestiae beatae. Ut illum
-        omnis illo eligendi facere vel porro excepturi sapiente perspiciatis et,
-        est soluta asperiores voluptates qui similique, sunt iure id. Nisi harum
-        voluptatum sunt, alias iusto quos officiis amet iure repellendus sequi
-        tenetur adipisci vitae veniam ipsum rem! Vel modi voluptatem sint error
-        deleniti fuga fugiat quisquam praesentium atque dolore. Laboriosam
-        aperiam amet laudantium aut itaque facere exercitationem delectus in!
+        ducimus explicabo veniam quae.
       </div>
       <div className="selected-post-footer">
         <div className="like-container">
@@ -39,6 +52,8 @@ const SelectedPost = ({ post }: IPost) => {
         <div className="next"></div>
       </div>
     </div>
+    {modalImg.isOpen ? <ImageModal /> : null}
+    </>
   );
 };
 

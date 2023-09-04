@@ -1,0 +1,26 @@
+.img-modal {
+    position: fixed;
+    top: 3%;
+    background: rgb(195, 195, 195);
+    padding: 30px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.close-img-modal {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.close-img-modal:hover {
+    color: red;
+    cursor: pointer;
+}
+
+.img-modal img {
+    max-height: 500px;
+    object-fit: cover;
+}
