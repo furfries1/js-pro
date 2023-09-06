@@ -59,11 +59,16 @@
 
 .fav {
   display: block;
-  background-image: url("../../images/fav-sm.png");
   width: 16px;
   height: 16px;
   cursor: pointer;
 }
+
+.fav img {
+  width: 16px;
+  height: 16px;
+}
+
 .dots {
   display: block;
   background-image: url("../../images/dots-sm.png");
@@ -143,9 +148,8 @@
 
 .fav {
   display: block;
-  background-image: url("../../images/fav-sm.png");
-  width: 16px;
-  height: 16px;
+  /* width: 16px;
+  height: 16px; */
   cursor: pointer;
 }
 .dots {
@@ -218,4 +222,85 @@
 
 .post-description-search {
   margin-left: 30px;
+}
+
+/* modal */
+
+.post-modal {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 15px;
+  background: #d1d1d1;
+}
+
+.post-img-modal  img {
+  object-fit: cover;
+  width: 450px;
+  height: 450px;
+  margin-top: 10px;
+}
+
+.post-img-modal {
+  display: flex;
+  justify-content: center;
+}
+
+.post-title-modal {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.post-date-modal {
+  color: #a4a4a4;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+}
+
+.like-modal {
+  display: block;
+  background-image: url("../../images/like-sm.png");
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.dislike-modal {
+  display: block;
+  background-image: url("../../images/dislike-sm.png");
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.like-container-modal {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.post-footer-modal {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.fav-container-modal {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.close-modal {
+  color: black;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.close-modal:hover {
+  color: red;
 }

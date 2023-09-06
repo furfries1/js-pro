@@ -1,32 +1,24 @@
-import React, { useEffect, useState, FC } from "react";
+import React from "react";
 import { IPosts } from "src/types/types";
 import Post from "../Post/Post";
-import { getPosts } from "src/helpers";
 import PageTemplate from "../PageTemplate/PageTemplate";
+import { useSelector } from "react-redux";
 
-interface ISearchResults {
-  value: string;
-}
-
-const SearchResultsContainer: FC<ISearchResults> = ({ value }) => {
-  const [posts, setPosts] = useState([]);
-  useEffect(() => {
-    getPosts(setPosts, 12);
-  }, []);
-
+const SearchResultsContainer = () => {
+  const posts = useSelector(({ posts }) => posts);
+  const searchValue = useSelector(({ searchValue }) => searchValue);
   let searchPosts = posts.filter((e: IPosts) =>
-    e.title.toLowerCase().includes(value)
+    e.title.toLowerCase().includes(searchValue)
   );
-
   return (
     <>
-
-      {value.length >= 2
-        ? searchPosts.map((post: IPosts) => (
-            <Post key={post.id} post={post} size="search" />
-          ))
-        : null}
-
+      <PageTemplate title={`Search results for '${searchValue}'`}>
+        {searchValue.length >= 2
+          ? searchPosts.map((post: IPosts) => (
+              <Post key={post.id} post={post} size="search" />
+            ))
+          : null}
+      </PageTemplate>
     </>
   );
 };

@@ -14,7 +14,3 @@ export interface IPosts {
   author: number;
   size: string;
 }
-
-export interface IPostsContext {
-  posts: IPosts[] | [];
-}

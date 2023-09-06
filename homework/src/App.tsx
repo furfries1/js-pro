@@ -6,7 +6,6 @@ import SelectedPostContainer from "./components/SelectedPostContainer/SelectedPo
 import Header from "./components/Header/Header";
 import Blog from "./components/Blog/Blog";
 import SignUp from "./components/SignUp/SignUp";
-import { getPosts } from "./helpers";
 import {
   Routes,
   Route,
@@ -15,30 +14,22 @@ import {
   useLocation,
   Navigate,
 } from "react-router-dom";
-import { IPosts, IPostsContext } from "./types/types";
-
-export const PostsContext = createContext<IPostsContext>({ posts: [] });
+import SearchResultsContainer from "./components/SearchResultsContainer/SearchResultsContainer";
 
 function App() {
-  const [posts, setPosts] = useState<IPosts[]>([]);
-  useEffect(() => {
-    getPosts(setPosts, 12);
-  }, []);
   const navigate = useNavigate();
   const location = useLocation();
   return (
     <>
-      <PostsContext.Provider value={{ posts }}>
-        <Routes>
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/:id" element={<SelectedPostContainer />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/success" element={<SuccessSignIn />} />
-          <Route path="/success" element={<SuccessSignIn />} />
-        </Routes>
-        {location.pathname === "/" && <Navigate to="/blog" />}
-      </PostsContext.Provider>
+      <Routes>
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:id" element={<SelectedPostContainer />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/success" element={<SuccessSignIn />} />
+        <Route path="/search" element={<SearchResultsContainer />} />        
+      </Routes>
+      {location.pathname === "/" && <Navigate to="/blog" />}
     </>
   );
 }

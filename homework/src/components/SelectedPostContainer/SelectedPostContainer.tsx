@@ -4,12 +4,12 @@ import SelectedPost from "./SelectedPost/SelectedPost";
 import { getPosts } from "src/helpers";
 import "./style.css";
 import { useParams } from "react-router-dom";
-import { PostsContext } from "src/App";
 import PageTemplate from "../PageTemplate/PageTemplate";
+import { useSelector } from "react-redux";
 
 const SelectedPostContainer = () => {
   const { id } = useParams<{ id: string }>();
-  const { posts } = useContext(PostsContext);
+  const posts = useSelector(({posts}) => posts)
 
   return (
     <PageTemplate title='Selected post'>

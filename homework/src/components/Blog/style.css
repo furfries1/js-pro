@@ -4,6 +4,10 @@
   width: 100%;
 }
 
+.blur {
+  filter: blur(5px);
+}
+
 .big-posts {
   width: 66%;
   display: flex;

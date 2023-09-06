@@ -13,6 +13,10 @@
   border-radius: 15px;
 }
 
+.blur {
+  filter: blur(5px);
+}
+
 .title-container {
   margin-right: auto;
 }
@@ -59,7 +63,6 @@
 
 .fav {
     display: block;
-    background-image: url('../../images/fav.png');
     width: 32px;
     height: 32px;
     cursor: pointer;

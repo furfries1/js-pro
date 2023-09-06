@@ -14,12 +14,15 @@
   justify-content: center;
   width: 25vw;
   margin-top: 50px;
+  cursor: default;
 }
 
 .navbar {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    min-width: 20%;
+    cursor: default;
 }
 
 .hidden {
@@ -43,4 +46,23 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.light-theme {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.dark-theme {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.toggle-theme {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 3em;
+    margin-bottom: 30px;
 }
