@@ -2,29 +2,34 @@ import React from "react";
 import { IPost } from "src/types/types";
 import { useNavigate } from "react-router-dom";
 import "./style.css";
-import { useDispatch, useSelector  } from "react-redux";
-import Fav from 'src/images/fav.svg'
+import { useDispatch, useSelector } from "react-redux";
+import Fav from "src/images/fav.svg";
+import FavActive from "src/images/fav-active.svg";
+import Dots from "src/images/dots.svg";
+import Like from "src/images/like.svg";
+import Dislike from "src/images/dislike.svg";
 
 const Post = ({ post, size }: IPost) => {
-  const { date, title, image, id, text } = post;
+  const { date, title, image, id, text, isFavorite, likes } = post;
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const modalInfo = useSelector(({ modalInfo }) => modalInfo);
+  const posts = useSelector(({ posts }) => posts);
   const openModal = () => {
     if (!modalInfo.isOpen) {
       dispatch({ type: "TOGGLE_MODAL", payload: id });
-    }
-    else {
+    } else {
       return;
     }
   };
+
   return (
     <div className={`post-${size}`} onClick={() => openModal()}>
       <div className={`post-body-${size}`}>
         <div className={`post-description-${size}`}>
           <div className={`post-date-${size}`}>
             {date}{" "}
-            {modalInfo.id === id && modalInfo.isOpen && size === "modal" ? (
+            {size === "modal" ? (
               <span
                 className="close-modal"
                 onClick={() => dispatch({ type: "TOGGLE_MODAL", payload: id })}
@@ -45,17 +50,35 @@ const Post = ({ post, size }: IPost) => {
           <div>{text}</div>
         ) : null}
       </div>
-      <div className={`post-footer-${size}`}>
+      <div
+        className={`post-footer-${size}`}
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className={`like-container-${size}`}>
-          <div className="like"></div>
-          <div className="dislike"></div>
+          <div
+            className="like"
+            onClick={() => dispatch({ type: "ADD_LIKE", payload: id })}
+          >
+            <img src={Like} alt="like" />
+          </div>
+          <span>{likes || 0}</span>
+          <div
+            className="dislike"
+            onClick={() => dispatch({ type: "REMOVE_LIKE", payload: id })}
+          >
+            <img src={Dislike} alt="dislike" />
+          </div>
         </div>
         <div className={`fav-container-${size}`}>
-          <div className="fav" onClick={() => dispatch({ type: "SET_FAVORITE", payload: id })}><img src={Fav} alt="fav" /></div>
           <div
-            className="dots"
-            onClick={() => navigate(`/blog/${post.id}`)}
-          ></div>
+            className="fav"
+            onClick={() => dispatch({ type: "SET_FAVORITE_POST", payload: id })}
+          >
+            <img src={isFavorite ? FavActive : Fav} alt="fav" />
+          </div>
+          <div className="dots" onClick={() => navigate(`/blog/${post.id}`)}>
+            <img src={Dots} alt="dots" />
+          </div>
         </div>
       </div>
     </div>

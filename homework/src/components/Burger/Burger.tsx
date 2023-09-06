@@ -9,7 +9,7 @@ const Burger = () => {
   return (
     <div className="burger">
       <div onClick={() => onBurgerClick()}>{isOpen ? '✖' : '☰'}</div>
-      <Menu isOpen={isOpen}/>
+      <Menu isOpen={isOpen} setIsOpen={setIsOpen}/>
     </div>
   );
 };

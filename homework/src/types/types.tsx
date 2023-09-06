@@ -13,4 +13,6 @@ export interface IPosts {
   title: string;
   author: number;
   size: string;
+  isFavorite?: boolean;
+  likes: number;
 }

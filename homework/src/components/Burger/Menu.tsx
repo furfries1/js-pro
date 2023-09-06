@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./style.css";
 import { Link } from "react-router-dom";
@@ -6,16 +6,24 @@ import Light from "src/images/light-theme.svg";
 import Dark from "src/images/dark-theme.svg";
 import LightActive from "src/images/light-theme-active.svg";
 import DarkActive from "src/images/dark-theme-active.svg";
+import { useOnClickOutside } from "src/hooks/useOutsideClick";
 
 interface IMenu {
   isOpen: boolean;
+  setIsOpen: (value: boolean) => void;
 }
 
-const Menu: FC<IMenu> = ({ isOpen }) => {
+const Menu: FC<IMenu> = ({ isOpen, setIsOpen}) => {
   const dispatch = useDispatch();
   const theme = useSelector(({ theme }) => theme);
+  const menuRef = useRef<HTMLDivElement>(null);
+  useOnClickOutside(menuRef, () => {
+    if(isOpen) {
+      setTimeout(() => setIsOpen(false), 150) 
+    }
+  });
   return (
-    <div className={`menu ${isOpen ? "" : "hidden"}`}>
+    <div className={`menu ${isOpen ? "" : "hidden"}`} ref={menuRef}>
       <nav className="navbar">
         <div className="nav-top">
           <Link to="#">User</Link>
@@ -26,7 +34,7 @@ const Menu: FC<IMenu> = ({ isOpen }) => {
           <div className="toggle-theme">
             <div>
               <img
-                src={theme === 'dark' ? DarkActive : Dark}
+                src={theme === "dark" ? DarkActive : Dark}
                 alt="dark"
                 className="dark-theme"
                 onClick={() =>
@@ -36,7 +44,7 @@ const Menu: FC<IMenu> = ({ isOpen }) => {
             </div>
             <div>
               <img
-                src={theme === 'light' ? LightActive : Light}
+                src={theme === "light" ? LightActive : Light}
                 alt="light"
                 className="light-theme"
                 onClick={() =>

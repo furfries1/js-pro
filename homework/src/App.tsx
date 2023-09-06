@@ -15,6 +15,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import SearchResultsContainer from "./components/SearchResultsContainer/SearchResultsContainer";
+import FavoritePosts from "./components/FavoritePosts/FavoritePosts";
 
 function App() {
   const navigate = useNavigate();
@@ -27,7 +28,8 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/success" element={<SuccessSignIn />} />
-        <Route path="/search" element={<SearchResultsContainer />} />        
+        <Route path="/search" element={<SearchResultsContainer />} />       
+        <Route path="/favorite" element={<FavoritePosts />} />    
       </Routes>
       {location.pathname === "/" && <Navigate to="/blog" />}
     </>

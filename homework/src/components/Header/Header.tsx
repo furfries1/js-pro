@@ -28,7 +28,7 @@ const Header = () => {
         />
         <img src={SearchIcon} alt="search" className="search-icon" />
       </div>
-      <Link to="/signin">
+      <Link to="/signup">
         {" "}
         <img src={Person} alt="person" className="person-icon" />{" "}
       </Link>
