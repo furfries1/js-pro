@@ -16,3 +16,9 @@ export interface IPosts {
   isFavorite?: boolean;
   likes: number;
 }
+
+export interface IUser {
+  username: string;
+  email: string;
+  password: string;
+}

@@ -1,19 +1,26 @@
 import React, { useEffect, useState, useContext } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { ThunkDispatch } from "redux-thunk";
+import { AnyAction } from "redux";
+import { useParams } from "react-router-dom";
+
 import SelectedPost from "./SelectedPost/SelectedPost";
 import "./style.css";
-import { useParams } from "react-router-dom";
 import PageTemplate from "../PageTemplate/PageTemplate";
-import { useSelector, useDispatch } from "react-redux";
+
 
 const SelectedPostContainer = () => {
+  const dispatch = useDispatch<ThunkDispatch<any, {}, AnyAction>>();
   const { id } = useParams<{ id: string }>();
-  const posts = useSelector(({ posts }) => posts);
-  const dispatch = useDispatch();
-  dispatch({ type: "TOGGLE_MODAL", payload: id });
+  const selectedPost = useSelector(({ selectedPost }) => selectedPost);
+  useEffect(() => {
+    dispatch({ type: "TOGGLE_MODAL", payload: id });
+  }, []);
+
   return (
     <PageTemplate title="Selected post">
       <div className="posts-container">
-        {id && posts.length && <SelectedPost post={posts[+id - 1]} size="selected" />}
+        {selectedPost && <SelectedPost post={selectedPost} size="selected" />}
       </div>
     </PageTemplate>
   );

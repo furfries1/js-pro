@@ -8,11 +8,14 @@ import FavActive from "src/images/fav-active.svg";
 import Dots from "src/images/dots.svg";
 import Like from "src/images/like.svg";
 import Dislike from "src/images/dislike.svg";
+import { GET_SELECTED_POST } from "src/actions/actions";
+import { ThunkDispatch } from "redux-thunk";
+import { AnyAction } from "redux";
 
 const Post = ({ post, size }: IPost) => {
   const { date, title, image, id, text, isFavorite, likes } = post;
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<ThunkDispatch<any, {}, AnyAction>>();
   const modalInfo = useSelector(({ modalInfo }) => modalInfo);
   const posts = useSelector(({ posts }) => posts);
   const openModal = () => {
@@ -21,6 +24,10 @@ const Post = ({ post, size }: IPost) => {
     } else {
       return;
     }
+  };
+  const openSelectedPost = () => {
+    dispatch(GET_SELECTED_POST(Number(post.id)));
+    navigate(`/blog/${post.id}`);
   };
 
   return (
@@ -76,7 +83,7 @@ const Post = ({ post, size }: IPost) => {
           >
             <img src={isFavorite ? FavActive : Fav} alt="fav" />
           </div>
-          <div className="dots" onClick={() => navigate(`/blog/${post.id}`)}>
+          <div className="dots" onClick={() => openSelectedPost()}>
             <img src={Dots} alt="dots" />
           </div>
         </div>

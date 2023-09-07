@@ -19,7 +19,7 @@ const Menu: FC<IMenu> = ({ isOpen, setIsOpen}) => {
   const menuRef = useRef<HTMLDivElement>(null);
   useOnClickOutside(menuRef, () => {
     if(isOpen) {
-      setTimeout(() => setIsOpen(false), 150) 
+      setTimeout(() => setIsOpen(false), 250) 
     }
   });
   return (

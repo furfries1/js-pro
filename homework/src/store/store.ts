@@ -10,11 +10,13 @@ const initialState = {
   searchValue: "",
   isLoading: false,
   tab: "all",
-  // user: {
-  //   username: "string",
-  //   email: "user@example.com",
-  //   id: 0
-  // }
+  user: {
+    username: "",
+    email: "",
+    id: null,
+    isActivated: false,
+  },
+  selectedPost: [],
 };
 
 const rootReducer = (state = initialState, action: any) => {
@@ -108,6 +110,24 @@ const rootReducer = (state = initialState, action: any) => {
           }
           return post;
         }),
+      };
+    }
+    case "SET_USER": {
+      return {
+        ...state,
+        user: action.payload,
+      };
+    }
+    case "SET_ACTIVATION": {
+      return {
+        ...state,
+        user: { ...state.user, isActivated: true },
+      };
+    }
+    case "SET_SELECTED_POST": {
+      return {
+        ...state,
+        selectedPost: action.payload,
       };
     }
     default:
