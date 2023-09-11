@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import ImageModal from "src/components/ImageModal/ImageModal";
-import { IPost } from "src/types/types";
+import { IPost, IPosts } from "src/types/types";
 import Like from "src/images/like.svg";
 import Dislike from "src/images/dislike.svg";
 import Fav from "src/images/fav.svg";
@@ -10,7 +10,9 @@ import FavActive from "src/images/fav-active.svg";
 const SelectedPost = ({ post }: IPost) => {
   const dispatch = useDispatch();
   const modalImg = useSelector(({ modalImgInfo }) => modalImgInfo);
+  const posts = useSelector(({ posts }) => posts);
   const { date, title, image, text, description, isFavorite, id, likes } = post;
+  const selectedPosts = posts.filter((post: IPosts) => post.id === id);
   return (
     <>
       <div className={`selected-post ${modalImg.isOpen ? "blur" : ""}`}>
@@ -37,18 +39,29 @@ const SelectedPost = ({ post }: IPost) => {
         <div className="selected-post-footer">
           <div className="like-container">
             <div className="like">
-              <img src={Like} alt="like" onClick={() => dispatch({ type: "ADD_LIKE", payload: id })}/>
+              <img
+                src={Like}
+                alt="like"
+                onClick={() => dispatch({ type: "ADD_LIKE", payload: id })}
+              />
             </div>
-            <span>{likes || 0}</span>
+            <span>{selectedPosts[0].likes || 0}</span>
             <div className="dislike">
-              <img src={Dislike} alt="dislike" onClick={() => dispatch({ type: "REMOVE_LIKE", payload: id })}/>
+              <img
+                src={Dislike}
+                alt="dislike"
+                onClick={() => dispatch({ type: "REMOVE_LIKE", payload: id })}
+              />
             </div>
           </div>
           <div
             className="fav"
             onClick={() => dispatch({ type: "SET_FAVORITE_POST", payload: id })}
           >
-            <img src={isFavorite ? FavActive : Fav} alt="fav" />
+            <img
+              src={selectedPosts[0].isFavorite ? FavActive : Fav}
+              alt="fav"
+            />
           </div>
         </div>
         <div className="nav-container">

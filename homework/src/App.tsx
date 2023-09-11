@@ -16,6 +16,7 @@ import {
 } from "react-router-dom";
 import SearchResultsContainer from "./components/SearchResultsContainer/SearchResultsContainer";
 import FavoritePosts from "./components/FavoritePosts/FavoritePosts";
+import ActivateUser from "./components/ActivateUser/ActivateUser";
 
 function App() {
   const navigate = useNavigate();
@@ -30,6 +31,7 @@ function App() {
         <Route path="/success" element={<SuccessSignIn />} />
         <Route path="/search" element={<SearchResultsContainer />} />       
         <Route path="/favorite" element={<FavoritePosts />} />    
+        <Route path="/activate/:uid/:token" element={<ActivateUser />} />    
       </Routes>
       {location.pathname === "/" && <Navigate to="/blog" />}
     </>

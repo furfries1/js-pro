@@ -4,14 +4,16 @@ import Tab from "./Tab/Tab";
 import { GET_POSTS } from "src/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { ThunkDispatch } from "redux-thunk";
+import { AnyAction } from "redux";
 
 const TabsContainer = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<ThunkDispatch<any, {}, AnyAction>>();
   const posts = useSelector(({ posts }) => posts);
   const tab = useSelector(({ tab }) => tab);
+
   useEffect(() => {
     if (!posts.length) {
-      // @ts-expect-error
       dispatch(GET_POSTS());
     }
   }, []);

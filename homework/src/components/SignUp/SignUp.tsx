@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Input from "../Input/Input";
 import "./style.css";
 import PageTemplate from "../PageTemplate/PageTemplate";
+import { useDispatch } from "react-redux";
+import { CREATE_USER } from "src/actions/actions";
 
 
 const SignUp = () => {
@@ -9,6 +11,7 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [name, setName] = useState("");
+  const dispatch = useDispatch();
   return (
     <PageTemplate title="Sign Up">
     <form>
@@ -40,7 +43,8 @@ const SignUp = () => {
         value={confirmPassword}
         onChange={setConfirmPassword}
       />
-      <button className="form-button">sign up</button>
+      {/* @ts-expect-error */}
+      <button className="form-button" onClick={() => dispatch(CREATE_USER({username: name, email, password}))}>sign up</button>
     </form>
     </PageTemplate>
   );
