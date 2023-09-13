@@ -1,7 +1,7 @@
 import React, { FC, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./style.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Light from "src/images/light-theme.svg";
 import Dark from "src/images/dark-theme.svg";
 import LightActive from "src/images/light-theme-active.svg";
@@ -13,15 +13,21 @@ interface IMenu {
   setIsOpen: (value: boolean) => void;
 }
 
-const Menu: FC<IMenu> = ({ isOpen, setIsOpen}) => {
+const Menu: FC<IMenu> = ({ isOpen, setIsOpen }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const theme = useSelector(({ theme }) => theme);
   const menuRef = useRef<HTMLDivElement>(null);
   useOnClickOutside(menuRef, () => {
-    if(isOpen) {
-      setTimeout(() => setIsOpen(false), 250) 
+    if (isOpen) {
+      setTimeout(() => setIsOpen(false), 250);
     }
   });
+  const logOut = () => {
+    localStorage.removeItem("access");
+    dispatch({ type: "REMOVE_USER" });
+    navigate("/signin");
+  };
   return (
     <div className={`menu ${isOpen ? "" : "hidden"}`} ref={menuRef}>
       <nav className="navbar">
@@ -53,7 +59,9 @@ const Menu: FC<IMenu> = ({ isOpen, setIsOpen}) => {
               />
             </div>
           </div>
-          <div className="logout">LOGOUT</div>
+          <div className="logout" onClick={() => logOut()}>
+            LOGOUT
+          </div>
         </div>
       </nav>
     </div>
