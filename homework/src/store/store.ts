@@ -130,6 +130,18 @@ const rootReducer = (state = initialState, action: any) => {
         selectedPost: action.payload,
       };
     }
+    case "REMOVE_USER": {
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          username: "",
+          email: "",
+          id: null,
+          isActivated: false,
+        },
+      };
+    }
     default:
       return state;
   }
