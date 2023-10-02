@@ -2,10 +2,6 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import ImageModal from "src/components/ImageModal/ImageModal";
 import { IPost, IPosts } from "src/types/types";
-import Like from "src/images/like.svg";
-import Dislike from "src/images/dislike.svg";
-import Fav from "src/images/fav.svg";
-import FavActive from "src/images/fav-active.svg";
 
 const SelectedPost = ({ post }: IPost) => {
   const dispatch = useDispatch();
@@ -35,34 +31,6 @@ const SelectedPost = ({ post }: IPost) => {
           dolor deserunt, modi quibusdam pariatur possimus. Possimus quo atque
           illo rem id, quasi sint, nihil delectus tempore perspiciatis earum
           illum, dignissimos suscipit ducimus explicabo veniam quae.
-        </div>
-        <div className="selected-post-footer">
-          <div className="like-container">
-            <div className="like">
-              <img
-                src={Like}
-                alt="like"
-                onClick={() => dispatch({ type: "ADD_LIKE", payload: id })}
-              />
-            </div>
-            <span>{selectedPosts[0].likes || 0}</span>
-            <div className="dislike">
-              <img
-                src={Dislike}
-                alt="dislike"
-                onClick={() => dispatch({ type: "REMOVE_LIKE", payload: id })}
-              />
-            </div>
-          </div>
-          <div
-            className="fav"
-            onClick={() => dispatch({ type: "SET_FAVORITE_POST", payload: id })}
-          >
-            <img
-              src={selectedPosts[0].isFavorite ? FavActive : Fav}
-              alt="fav"
-            />
-          </div>
         </div>
         <div className="nav-container">
           <div className="prev"></div>

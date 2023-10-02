@@ -25,7 +25,7 @@ const Header = () => {
       <Burger />
       <div className="search-container">
         <input
-          type="text"
+          type="search"
           placeholder="type to search..."
           className="search-input"
           value={searchValue}

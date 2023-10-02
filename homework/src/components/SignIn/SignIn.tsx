@@ -11,34 +11,39 @@ import { AnyAction } from "redux";
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const dispatch = useDispatch<ThunkDispatch<any, {}, AnyAction>> ();
-  const navigate = useNavigate()
+  const dispatch = useDispatch<ThunkDispatch<any, {}, AnyAction>>();
+  const navigate = useNavigate();
   return (
     <PageTemplate title="Sign In">
-    <form action="/success">
-      <Input
-        label="Email"
-        placeholder="Your Email"
-        type="text"
-        value={email}
-        onChange={setEmail}
-      />
-      <Input
-        value={password}
-        onChange={setPassword}
-        label="Password"
-        placeholder="Your password"
-        type="password"
-      />
-      <p className="reset-password">
-        <a href="#">Forgot password?</a>
-      </p>
+      <form action="/success">
+        <Input
+          label="Email"
+          placeholder="Your Email"
+          type="text"
+          value={email}
+          onChange={setEmail}
+        />
+        <Input
+          value={password}
+          onChange={setPassword}
+          label="Password"
+          placeholder="Your password"
+          type="password"
+        />
+        <p className="reset-password">
+          <a href="#">Forgot password?</a>
+        </p>
 
-      <button className="form-button" onClick={() => dispatch(SIGN_IN(email, password, navigate))}>sign in</button>
-      <p className="signup">
-        Don't have an account? <a href="#">Sign Up</a>
-      </p>
-    </form>
+        <button
+          className="form-button"
+          onClick={() => dispatch(SIGN_IN(email, password, navigate))}
+        >
+          sign in
+        </button>
+        <p className="signup">
+          Don't have an account? <a href="#">Sign Up</a>
+        </p>
+      </form>
     </PageTemplate>
   );
 };
