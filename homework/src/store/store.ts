@@ -4,9 +4,10 @@ import { composeWithDevTools } from "redux-devtools-extension";
 
 const initialState = {
   theme: "light",
-  modalInfo: { isOpen: false, id: null },
+  modalInfo: { isOpen: false, type: "" },
   modalImgInfo: { isOpen: false, src: null },
   posts: [],
+  myPosts: [],
   searchValue: "",
   isLoading: false,
   tab: "all",
@@ -17,6 +18,9 @@ const initialState = {
     isActivated: false,
   },
   selectedPost: [],
+  modalPost: [],
+  sortBy: "",
+  sortByMyPosts: "",
 };
 
 const rootReducer = (state = initialState, action: any) => {
@@ -30,7 +34,7 @@ const rootReducer = (state = initialState, action: any) => {
     case "TOGGLE_MODAL": {
       return {
         ...state,
-        modalInfo: { isOpen: !state.modalInfo.isOpen, id: action.payload },
+        modalInfo: { isOpen: !state.modalInfo.isOpen, type: action.payload },
       };
     }
     case "TOGGLE_IMG_MODAL": {
@@ -46,6 +50,12 @@ const rootReducer = (state = initialState, action: any) => {
       return {
         ...state,
         posts: action.payload,
+      };
+    }
+    case "ADD_POSTS": {
+      return {
+        ...state,
+        posts: [...state.posts.concat(action.payload)],
       };
     }
     case "SET_SEARCH": {
@@ -130,6 +140,18 @@ const rootReducer = (state = initialState, action: any) => {
         selectedPost: action.payload,
       };
     }
+    case "SET_MODAL_POST": {
+      return {
+        ...state,
+        modalPost: action.payload,
+      };
+    }
+    case "SET_MY_POSTS": {
+      return {
+        ...state,
+        myPosts: action.payload,
+      };
+    }
     case "REMOVE_USER": {
       return {
         ...state,
@@ -140,6 +162,24 @@ const rootReducer = (state = initialState, action: any) => {
           id: null,
           isActivated: false,
         },
+      };
+    }
+    case "SET_SORT_BY": {
+      return {
+        ...state,
+        sortBy: action.payload,
+      };
+    }
+    case "SET_SORT_BY_MY_POSTS": {
+      return {
+        ...state,
+        sortByMyPosts: action.payload,
+      };
+    }
+    case "ADD_MORE_MY_POSTS": {
+      return {
+        ...state,
+        myPosts: [...state.myPosts.concat(action.payload)],
       };
     }
     default:

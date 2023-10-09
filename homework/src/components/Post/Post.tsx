@@ -1,6 +1,6 @@
 import React from "react";
 import { IPost } from "src/types/types";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./style.css";
 import { useDispatch, useSelector } from "react-redux";
 import Fav from "src/images/fav.svg";
@@ -15,18 +15,22 @@ import { AnyAction } from "redux";
 const Post = ({ post, size }: IPost) => {
   const { date, title, image, id, text, isFavorite, likes } = post;
   const navigate = useNavigate();
+  const location = useLocation();
   const dispatch = useDispatch<ThunkDispatch<any, {}, AnyAction>>();
   const modalInfo = useSelector(({ modalInfo }) => modalInfo);
   const posts = useSelector(({ posts }) => posts);
   const openModal = () => {
     if (!modalInfo.isOpen) {
-      dispatch({ type: "TOGGLE_MODAL", payload: id });
+      dispatch(GET_SELECTED_POST(Number(post.id), "modal"));
+      location.pathname === "/blog/"
+        ? dispatch({ type: "TOGGLE_MODAL", payload: "blog" })
+        : dispatch({ type: "TOGGLE_MODAL", payload: "myposts" });
     } else {
       return;
     }
   };
   const openSelectedPost = () => {
-    dispatch(GET_SELECTED_POST(Number(post.id)));
+    dispatch(GET_SELECTED_POST(Number(post.id), "selected"));
     navigate(`/blog/${post.id}`);
   };
 
@@ -39,7 +43,7 @@ const Post = ({ post, size }: IPost) => {
             {size === "modal" ? (
               <span
                 className="close-modal"
-                onClick={() => dispatch({ type: "TOGGLE_MODAL", payload: id })}
+                onClick={() => dispatch({ type: "TOGGLE_MODAL", payload: "" })}
               >
                 ✖
               </span>

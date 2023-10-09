@@ -81,7 +81,7 @@
 
 .next {
     display: block;
-    background-image: url('../../images/arrow.png');
+
     width: 64px;
     height: 64px;
     cursor: pointer;
@@ -89,7 +89,7 @@
 
 .prev {
     display: block;
-    background-image: url('../../images/arrow.png');
+
     transform: scale(-1, 1);
     width: 64px;
     height: 64px;

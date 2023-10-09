@@ -8,52 +8,36 @@
   filter: blur(5px);
 }
 
-.big-posts {
-  width: 66%;
-  display: flex;
-}
-
-.big-posts-left {
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.big-posts-right {
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.small-posts {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 15px;
-}
-
-.next {
-  display: block;
-  background-image: url('../../images/arrow.png');
-  width: 64px;
-  height: 64px;
-  cursor: pointer;
-}
-
-.prev {
-  display: block;
-  background-image: url('../../images/arrow.png');
-  transform: scale(-1, 1);
-  width: 64px;
-  height: 64px;
-  cursor: pointer;
-}
-
 .nav-container {
   margin-top: 50px;
   display: flex;
   justify-content: space-evenly;
   width: 100%;
+}
+
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+}
+
+.grid-item {
+  grid-column: span 1;
+  grid-row: span 1;
+}
+.grid-item:nth-child(4n + 1),
+.grid-item:nth-child(4n + 2) {
+  grid-column: span 1;
+  grid-row: span 2;
+}
+
+.show-more {
+  width: 25%;
+  padding: 10px;
+  background-color: #6171e6;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  margin-top: 15px;
 }

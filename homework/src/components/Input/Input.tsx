@@ -1,13 +1,6 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import "./style.css";
-
-interface IInput {
-  label: string;
-  placeholder: string;
-  type: "password" | "text";
-  value: string;
-  onChange: (value: string) => void;
-}
+import { IInput } from "src/types/types";
 
 const Input: FC<IInput> = ({ label, placeholder, type, value, onChange }) => {
   return (

@@ -7,11 +7,7 @@ import Dark from "src/images/dark-theme.svg";
 import LightActive from "src/images/light-theme-active.svg";
 import DarkActive from "src/images/dark-theme-active.svg";
 import { useOnClickOutside } from "src/hooks/useOutsideClick";
-
-interface IMenu {
-  isOpen: boolean;
-  setIsOpen: (value: boolean) => void;
-}
+import { IMenu } from "src/types/types";
 
 const Menu: FC<IMenu> = ({ isOpen, setIsOpen }) => {
   const dispatch = useDispatch();
@@ -25,6 +21,7 @@ const Menu: FC<IMenu> = ({ isOpen, setIsOpen }) => {
   });
   const logOut = () => {
     localStorage.removeItem("access");
+    localStorage.removeItem("refresh");
     dispatch({ type: "REMOVE_USER" });
     navigate("/signin");
   };
@@ -32,9 +29,9 @@ const Menu: FC<IMenu> = ({ isOpen, setIsOpen }) => {
     <div className={`menu ${isOpen ? "" : "hidden"}`} ref={menuRef}>
       <nav className="navbar">
         <div className="nav-top">
-          <Link to="#">User</Link>
+          <Link to="#">user</Link>
           <Link to="/blog">home</Link>
-          <Link to="#">add post</Link>
+          <Link to="/addpost">add post</Link>
         </div>
         <div className="nav-bottom">
           <div className="toggle-theme">
@@ -60,7 +57,7 @@ const Menu: FC<IMenu> = ({ isOpen, setIsOpen }) => {
             </div>
           </div>
           <div className="logout" onClick={() => logOut()}>
-            LOGOUT
+            {localStorage.getItem("access") ? "LOGOUT" : "SIGN IN"}
           </div>
         </div>
       </nav>
